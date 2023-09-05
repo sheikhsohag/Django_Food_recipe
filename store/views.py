@@ -4,6 +4,8 @@ from . models import Product
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from category.models import Category
+from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 def Store(request, category_slug = None):
@@ -29,7 +31,16 @@ def create_recipe(request):
                 raise Http404("The requested slug does not exist.")
             else:
                 if request.user.is_authenticated:
-                    form.save()
+                    title = form.cleaned_data['product_name']
+                    description = form.cleaned_data['description']
+                    ingredient = form.cleaned_data['ingredients']
+                    instruction = form.cleaned_data['instructions']
+                    image = form.cleaned_data['image']
+                    slug = form.cleaned_data['slug']
+                    category = form.cleaned_data['category']
+                    product = Product(product_name = title, description=description, ingredients=ingredient, instructions=instruction,image=image,
+                                slug=slug, category=category, author = request.user)
+                    product.save()
                     return redirect('home') 
                 else:
                     return redirect(request,'lonin')
@@ -41,22 +52,55 @@ def create_recipe(request):
 
 @login_required
 def update_recipe(request, product_id):
-    recipe = get_object_or_404(Product, id=product_id)
+    recipe = Product.objects.get(pk=product_id)
+    form = ProductForm(instance=recipe)
+    
     if recipe.author == request.user:
         if request.method == 'POST':
             form = ProductForm(request.POST, instance=recipe)
             if form.is_valid():
-                form.save()
-                return redirect('home')
+                title = form.cleaned_data['product_name']
+                description = form.cleaned_data['description']
+                ingredient = form.cleaned_data['ingredients']
+                instruction = form.cleaned_data['instructions']
+                image = form.cleaned_data['image']
+                slug = form.cleaned_data['slug']
+                category = form.cleaned_data['category']
+                product = Product(product_name = title, description=description, ingredients=ingredient, instructions=instruction,image=image,
+                slug=slug, category=category, author = request.user)
+                recipe.delete()
+                product.save()
+                return redirect('profile') 
         else:
             form = ProductForm(instance=recipe)
         return render(request, 'update_recipe.html', {'form': form, 'recipe': recipe})
     else:
         return redirect('home')
 
-# def product_detail(request, category_slug=None, product_slug=None):
+def product_detail(request, category_slug, product_slug):
     
-#     single_product = Product.objects.get(category__slug = category_slug, slug=product_slug)
-#     print('================',single_product)
-       
-#     return render(request, 'product_details.html', {'product':single_product})
+    single_product = Product.objects.get(category__slug = category_slug, slug=product_slug)
+    return render(request, 'product_details.html', {'recipe':single_product})
+
+@login_required
+def Delete_recipe(request, recipe_id):
+    recipe = Product.objects.get(pk=recipe_id)
+    if request.user == recipe.author:
+        user_profile = User.objects.get(username=recipe.author.username)
+        user_recipe = Product.objects.filter(author=user_profile)
+        
+        context =  {'profile' : user_profile, 'user_recipe':user_recipe}
+        recipe.delete()
+        return render(request, 'accounts/profile.html', context)
+    else:
+        return redirect(request, 'login')
+    
+
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.filter(ingredients__icontains=keyword)
+            print('==----===', products)
+    return render(request, 'index.html', {'product': products})

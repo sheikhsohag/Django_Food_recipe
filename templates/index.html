@@ -15,8 +15,9 @@
 <section class="section-name padding-y-sm">
 <div class="container">
 
+{% if product %}
+
 <header class="section-heading">
-	<a href="./store.html" class="btn btn-outline-primary float-right">See all</a>
 	<h3 class="section-title">Popular Recipe</h3>
 </header><!-- sect-heading -->
 
@@ -25,16 +26,20 @@
 	{% for recipe in product %}
 	<div class="col-md-3">
 		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
+			<a href="{% url 'product_detail' recipe.category.slug recipe.slug %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
 			<figcaption class="info-wrap">
-				<a href="" class="title">Recipe:</br>{{recipe.product_name}}</a>
+				<a class="title">{{recipe.product_name}}</a>
 				
-				<div class="price mt-1">Decription:</br>{{recipe.description}}</div> <!-- price-wrap.// -->
+				<div class="price mt-1">{{recipe.description}}</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
 	{% endfor %}
 </div> <!-- row.// -->
+{% else %}
+<h2> Recipe List is Empty </h2>
+
+{% endif%}
 
 </div><!-- container // -->
 

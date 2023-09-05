@@ -42,9 +42,14 @@ def profile(request, usernam=None):
         
         context =  {'profile' : user_profile, 'user_recipe':user_recipe}
         
-        return render(request, 'accounts/dashboard.html', context)
+        return render(request, 'accounts/profile.html', context)
     else:
-        return redirect('login')
+        user_profile = User.objects.get(username=request.user.username)
+        user_recipe = Product.objects.filter(author=user_profile)
+        
+        context =  {'profile' : user_profile, 'user_recipe':user_recipe}
+        
+        return render(request, 'accounts/profile.html', context)
 
 def user_logout(request):
     logout(request)

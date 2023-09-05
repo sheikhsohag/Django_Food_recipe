@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Product(models.Model):
     product_name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=100,unique=True)
     description = models.TextField(max_length=500, blank=True)
     ingredients = models.TextField(max_length=500,blank=True)
     instructions = models.TextField(max_length=500,blank=True)

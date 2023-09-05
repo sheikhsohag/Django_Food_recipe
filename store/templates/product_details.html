@@ -1,1 +1,28 @@
-<h3>okkkkk</h3>
+{% extends 'base.html' %}
+
+{% block body%}
+
+            <div class="row">
+
+           
+           
+              <div class="col-md-6">
+                <div class="card card-product-grid">
+                  <a class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
+                </div>
+              </div>   
+
+              <div class="col-md-6">
+                 <div class="card card-product-grid">
+                    <h3> <h3 style="color: blue;">Recipe Title: </h3> {{recipe.product_name}}</h3>
+                    <h3> <h3 style="color: blue;">Recipe Author: </h3> {{recipe.author}}</h3>
+                    <h3> <h3 style="color: blue;">Recipe description: </h3> {{recipe.description}}</h3>
+                    <h3> <h3 style="color: blue;">Recipe ingredients: </h3> {{recipe.ingredients}}</h3>
+                    <h3> <h3 style="color: blue;">Recipe instructions: </h3> {{recipe.instructions}}</h3>
+                  </div>
+
+                 </div> <!-- col.// -->
+            </div>
+          
+
+{% endblock%}

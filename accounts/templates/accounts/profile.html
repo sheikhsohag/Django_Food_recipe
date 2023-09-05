@@ -3,9 +3,9 @@
 {% block body%}
 <section class="section-content padding-y">
       <!-- ============================ COMPONENT REGISTER   ================================= -->
-      <div class="card mx-auto" style="max-width: 520px; margin-top: 40px">
+      <div class="card mx-auto" style="max-width: 720px; margin-top: 80px">
         <article class="card-body">
-          <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+          <header class="mb-4"><h4 class="card-title">Profile</h4></header>
           <form method="POST">
             {% csrf_token %}
             <div class="form-row">
@@ -49,14 +49,38 @@
               {% for recipe in user_recipe %}
 
               <div class="col-md-6">
+
                 <div class="card card-product-grid">
                   <a href="{% url 'update_recipe' recipe.id %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
                   <figcaption class="info-wrap">
                     <a href="{% url 'update_recipe' recipe.id %}" class="title">Tittle: </br>{{recipe.product_name}}</a>
                     <div class="price mt-1">Product Description:</br>{{recipe.description}}</div> <!-- price-wrap.// -->
-                    <a href="{% url 'update_recipe' recipe.id %}" class="title"><h3>Update</h3></a>
+
+
+                  <div>
+
+                    <table class="table table-bordered">
+                  
+                      <tbody>
+          
+                          <tr>
+                              <td>
+                                 <a href="{% url 'update_recipe' recipe.id %}" class = 'btn btn-warning btn-sm'>edit</a>
+                                 <a href="{% url 'delete_recipe' recipe.id %}" class = 'btn btn-danger btn-sm'>delete</a>
+                                 <a href="{% url 'product_detail' recipe.category.slug recipe.slug%}" class = 'btn btn-success btn-sm'>details</a>
+                              </td>
+                            </tr>
+                           
+                      </tbody>
+                    </table>
+                  </div>
+
+
                   </figcaption>
                 </div>
+
+
+
               </div> <!-- col.// -->
 
               {% endfor %}
@@ -65,11 +89,7 @@
 
             </div> <!-- row.// -->
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">
-               Update
-              </button>
-            </div>
+            
             <!-- form-group// -->
           </form>
         </article>
