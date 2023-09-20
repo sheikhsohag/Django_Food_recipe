@@ -25,8 +25,12 @@ def Store(request, category_slug = None):
 def create_recipe(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
+        # print('baire=========')
         if form.is_valid():
-            slugg = form.cleaned_data['slug']
+            # print('valid--------------')
+            slugg = form.cleaned_data['product_name']
+            slugg=slugg.replace(" ","_")
+            # print('-==========------dk', slugg)
             if Product.objects.filter(slug=slugg).exists():
                 raise Http404("The requested slug does not exist.")
             else:
@@ -36,7 +40,7 @@ def create_recipe(request):
                     ingredient = form.cleaned_data['ingredients']
                     instruction = form.cleaned_data['instructions']
                     image = form.cleaned_data['image']
-                    slug = form.cleaned_data['slug']
+                    slug = slugg
                     category = form.cleaned_data['category']
                     product = Product(product_name = title, description=description, ingredients=ingredient, instructions=instruction,image=image,
                                 slug=slug, category=category, author = request.user)
@@ -59,12 +63,14 @@ def update_recipe(request, product_id):
         if request.method == 'POST':
             form = ProductForm(request.POST, instance=recipe)
             if form.is_valid():
+                slugg = form.cleaned_data['product_name']
+                slugg=slugg.replace(" ","_")
                 title = form.cleaned_data['product_name']
                 description = form.cleaned_data['description']
                 ingredient = form.cleaned_data['ingredients']
                 instruction = form.cleaned_data['instructions']
                 image = form.cleaned_data['image']
-                slug = form.cleaned_data['slug']
+                slug = slugg
                 category = form.cleaned_data['category']
                 product = Product(product_name = title, description=description, ingredients=ingredient, instructions=instruction,image=image,
                 slug=slug, category=category, author = request.user)
@@ -102,5 +108,5 @@ def search(request):
         keyword = request.GET['keyword']
         if keyword:
             products = Product.objects.filter(ingredients__icontains=keyword)
-            print('==----===', products)
+            # print('==----===', products)
     return render(request, 'index.html', {'product': products})
