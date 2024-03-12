@@ -125,23 +125,23 @@
 
 
 
-
               <div class="d-flex justify-content-end mb-3 mb-lg-0">
 
                 {% if request.user.is_authenticated %}
 
                 <div class="widget-header">
-                  <small class="title text-muted">Welcome <h3>{{request.user.first_name}}!</h3></small>
+                  <small class="title text-muted">Welcome <h5>{{request.user.first_name}}! <img src="img_girl.jpg" alt="img" width="500" height="600">
+                  </h5></small>
                   <div>
                     <a href="{% url 'profiles' request.user.username %}">profile</a>
                     <span class="dark-transp"> | </span>
                     <a href="{% url 'logout' %}"> logout </a>
                     <span class="dark-transp"> | </span>
-                    <a href="{% url 'create_menu' %}"> Share </a>
+                    <a href="{% url 'create_menu' %}"> Create Menu</a>
                   </div>
 
                   {% else %}
-                  <div class="widget-header">
+                  <div class="widget-header" id="demo">
                     <small class="title text-muted">Welcome guest!</small>
                     <div>
                       <a href="{% url 'login' %}">Sign in</a>
@@ -189,6 +189,11 @@
 <style>
   .d-flex{
     margin-left: 90px;
+  }
+
+  #demo{
+    text-align: center;
+
   }
 </style>
 </body>
