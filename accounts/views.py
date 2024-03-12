@@ -4,6 +4,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from . models import UserProfile
 from store.models import Product
+from django.views.generic import ListView
 
 
 # Create your views here.
@@ -34,11 +35,8 @@ def user_login(request):
 def profile(request, usernam=None):
     
     if usernam:
-        user_profile = User.objects.get(username=usernam)
+        user_profile = UserProfile.objects.filter(user__username=usernam)
         user_recipe = Product.objects.filter(author=user_profile)
-        
-        print('=====',user_profile.first_name)
-        print(user_recipe)
         
         context =  {'profile' : user_profile, 'user_recipe':user_recipe}
         
@@ -54,3 +52,15 @@ def profile(request, usernam=None):
 def user_logout(request):
     logout(request)
     return render(request, 'accounts/signin.html')
+
+
+class UserProfileDetailView(ListView):
+    model = UserProfile
+    template_name = 'accounts/profile_copy.html'
+    context_object_name = 'profile'
+    
+    def get_queryset(self):
+        username = self.kwargs['username']
+        queryset = UserProfile.objects.filter(user=username)
+        print(queryset)
+        return queryset

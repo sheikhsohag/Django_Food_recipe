@@ -84,14 +84,7 @@
 
             <div class="col-lg col-sm col-md col-lg-3 flex-grow-0">
               <div class="category-wrap dropdown d-inline-block float-right">
-                <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle"
-                  data-toggle="dropdown"
-
-                >
-                  <i class="fa fa-bars"> </i> All category
-                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" > <i class="fa fa-bars"> </i> All category </button>
 
                 <div class="dropdown-menu">
                   {% for cat in category %}
@@ -110,12 +103,12 @@
             <!-- col.// -->
 
           
-            <a href="{% url 'store' %}" class="btn btn-outline-info">Store</a>
-            <div class="col-lg col-md-6 col-sm-12 col">
+            
+            <div style = "margin-left: 10px">
     
               <form action="{% url 'search' %} " class="search" method="GET">
                 <div class="input-group w-100">
-                  <input type="text" class="form-control" style="width: 60%" placeholder="Search"  name="keyword" />
+                  <input type="text" class="form-control" style="width: 10%" placeholder="Search By Ingradient" name="keyword" />
                   <div class="input-group-append">
                     <button class="btn btn-success" type="submit">
                       <i class="fa fa-search"></i>
@@ -128,14 +121,11 @@
 
 
 
-            {% comment %} <a class="btn btn-outline-primary" href="{% url 'home' %}">Home</a> {% endcomment %}
-            </div>
-            <!-- col.// -->
 
 
 
 
-            <div class="col-lg-12 col-sm-12 col-12 order-12 order-lg-12">
+
               <div class="d-flex justify-content-end mb-3 mb-lg-0">
 
                 {% if request.user.is_authenticated %}
@@ -160,6 +150,7 @@
                     </div>
                   {% endif %}
             </div>
+            
             <!-- col.// -->
           </div>
           <!-- row.// -->
@@ -194,5 +185,11 @@
 		</section>
 	</div><!-- //container -->
 </footer>
+
+<style>
+  .d-flex{
+    margin-left: 90px;
+  }
+</style>
 </body>
 </html>

@@ -104,6 +104,7 @@ def Delete_recipe(request, recipe_id):
 
 
 def search(request):
+    products=[]
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
