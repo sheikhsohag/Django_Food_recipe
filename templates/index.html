@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% load static%}
 
 {% block body %}
 
-
-<section class="section-intro padding-y-sm">
-<div class="container">
-
-</div> <!-- container //  -->
-</section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
-<div class="container">
+<section class="section-name">
+<div class="containers">
 
 {% if product %}
 
@@ -24,16 +19,20 @@
 <div class="row">
 
 	{% for recipe in product %}
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="{% url 'product_detail' recipe.category.slug recipe.slug %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
-			<figcaption class="info-wrap">
+	
+		<div class="card-body">
+
+            <div class="card-img">
+				<a href="{% url 'product_detail' recipe.category.slug recipe.slug %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
+			</div>
+			
+            
+			<div class="card-info">
 				<a class="title">{{recipe.product_name}}</a>
-				
-				<div class="price mt-1">{{recipe.description}}</div> <!-- price-wrap.// -->
-			</figcaption>
+			</div>
+
 		</div>
-	</div> <!-- col.// -->
+	
 	{% endfor %}
 </div> <!-- row.// -->
 {% else %}
@@ -44,6 +43,68 @@
 </div><!-- container // -->
 
 </section>
+
+
+<style>
+
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+  h3{
+	background-color: antiquewhite;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	/* padding: 20px; */
+	padding-top: 10px;
+	margin-bottom: 20px;
+	font-weight: bold;
+  }
+
+  .row{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -15px;
+
+  }
+
+  .card-body{
+	width: 23%;
+	/* padding: 15px; */
+	height: 400px;
+	margin: 10px;
+	border: 1px solid gray;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	transition: 0.5;
+	border-radius: 10px;
+  }
+
+
+
+  .card-img img {
+	/* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); */
+    width: 100%;
+    height: 300px;
+    display: block;
+	border-radius: 10px 10px  0 0;
+	margin-bottom: 10px;
+	transition: 0.4s;
+}
+
+.card-img img:hover{
+       /* width: 23%; */
+	   box-shadow: 3px 4px 15px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-info{
+	padding: 15px;
+  }
+
+  
+</style>
 
 
 
