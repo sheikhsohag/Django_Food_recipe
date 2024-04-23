@@ -1,36 +1,116 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<section class="section-conten padding-y" style="min-height:84vh">
+<section class="sections">
 
 <!-- ============================ COMPONENT LOGIN   ================================= -->
-	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+	<div class="cards">
       <div class="card-body">
-      <h4 class="card-title mb-4">Sign in</h4>
+      <h4 class="card-title">Sign in</h4>
       <form method = 'post'>
         {% csrf_token %}
+
+        <div class="form-contains">
           <div class="form-group">
-			 <input type="text" class="form-control" placeholder="User Name" name="username" >
-          </div> <!-- form-group// -->
-          <div class="form-group">
-			<input type="password" class="form-control" placeholder="Password" name='password'>
-          </div> <!-- form-group// -->
-          
-          <div class="form-group">
-          	<a href="#" class="float-right">Forgot password?</a> 
-           
-          </div> <!-- form-group form-check .// -->
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-          </div> <!-- form-group// -->    
-      </form>
-      </div> <!-- card-body.// -->
+            <input  class="input-field" type="text" class="form-control" placeholder="User Name" name="username" >
+         </div> <!-- form-group// -->
+
+
+         <div class="form-group">
+           <input type="password" class="form-control" placeholder="Password" name='password'>
+         </div> <!-- form-group// -->
+         
+
+         <div class="form-group">
+             <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+         </div> <!-- form-group// -->    
+
+     </form>
+
+     </div> <!-- card-body.// -->
+        </div>
+
+
+      <p class="text-account">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
+     <br><br>
     </div> <!-- card .// -->
 
-     <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
-     <br><br>
+     
 <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
 
 
 </section>
+
+
+<style>
+    
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  section{
+    top: 0;
+    left: 0;
+    position: relative;
+    height: 375px;
+  }
+
+  .cards{
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    border: 1px solid ghostwhite;
+    box-shadow: 2px 3px 3px 3px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: blanchedalmond;
+  }
+
+
+
+  .card-title{
+    padding: 15px;
+    font-size: 2rem;
+    margin: 15px;
+  }
+
+  .form-contains{
+    display: block;
+  }
+
+  input{
+    width: 300px;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    outline: none;
+    box-shadow: 2px 2px 3px 3px rgba(20, 20, 20, 0.6);
+    border: none;
+  }
+
+  input:focus{
+    transform: scale(1.02);
+  }
+
+
+  button{
+    width: 100px;
+    padding: 5px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  button:focus{
+    background-color: gray;
+    color: red;
+  }
+
+
+  
+</style>
 {% endblock %}

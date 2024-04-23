@@ -3,11 +3,16 @@
 {% load static %}
 
 {% block body%}
-<section class="section-content padding-y" id="back">
+<section class="sections" id="back">
       <!-- ============================ COMPONENT REGISTER   ================================= -->
-      <div class="card mx-auto" style="max-width: 520px; margin-top: 40px">
-        <article class="card-body">
-          <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+      <div class="cards">
+
+        <div class="card-body">
+          <header class="header-section">
+            <h4 class="card-title">Sign up</h4>
+          </header>
+
+         <div class="form-section">
           <form method="POST">
             {% csrf_token %}
 
@@ -15,14 +20,15 @@
               <div class="col form-group" class="coll1">
                 <label>User Name</label>
                 <br/>
-                {{form.username}}
+                <p class="input-field">{{form.username}}</p>
+                
               </div>
             </div>
             <div class="form-row">
               <div class="col form-group">
                 <label>First name</label>
                 <br/>
-                {{form.first_name}}
+                <p class="input-field">{{form.first_name}}</p>
               </div>
               <!-- form-group end.// -->
               
@@ -34,16 +40,16 @@
               <div class="col form-group">
                 <label>Last name</label>
                 <br/>
-                {{form.last_name}}
+                <p class="input-field">{{form.last_name}}</p>
               </div>
             </div>
 
 
             <!-- form-row end.// -->
-            <div class="form-group">
+            <div class="form-group form-row">
               <label>Email</label>
               <br/>
-                {{form.email}}
+              <p class="input-field">{{form.email}}</p>
             </div>
             <!-- form-group end.// -->
 
@@ -51,7 +57,7 @@
               <div class="form-group col-md-6">
                 <label>Create password</label>
                 <br/>
-                {{form.password1}}
+                <p class="input-field">{{form.password1}}</p>
               </div>
               <!-- form-group end.// -->
 
@@ -65,25 +71,30 @@
               <div class="form-group col-md-6">
                 <label>Repeat password</label>
                 <br/>
-                {{form.password2}}
+                <p class="input-field">{{form.password2}}</p>
               </div>
               <!-- form-group end.// -->
             </div>
 
 
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">
+              <button  type="submit" class="btn btn-primary btn-block">
                 Register
               </button>
             </div>
             <!-- form-group// -->
           </form>
-        </article>
+         </div>
+        </div>
+
+        
         <!-- card-body.// -->
+
+        <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
+        <br /><br />
       </div>
       <!-- card .// -->
-      <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
-      <br /><br />
+
       <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
     </section>
 
@@ -92,5 +103,76 @@
         background-image: url('{% static "/image/images.jpeg" %}');
         background-color: rgb(236, 229, 229);
       }
+
+      section{
+        position: relative;
+        display: block;
+        height: 600px;
+      }
+
+      .cards{
+
+        position: absolute;
+        width: 450px;
+        height: auto;
+        border: 1px solid gray;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        box-shadow: 1px 1px 2px 2px rgba(20, 20, 20, 0.2);
+      }
+
+
+      .card-title{
+        padding: 15px;
+        font-size: 2rem;
+      }
+
+      label{
+        padding: 5px;
+        font-size: 1.5rem;
+      }
+
+      input#id_password1,input#id_password2, input#id_email, input#id_last_name, input#id_first_name, input#id_username{
+        width: 300px;
+        padding: 8px;
+        outline: none;
+        border: none;
+        box-shadow: 2px 2px 2px 2px rgba(20, 20, 20, 0.6);
+      }
+
+      input#id_password1:focus,input#id_password2:focus, input#id_email:focus, input#id_last_name:focus, input#id_first_name:focus, input#id_username:focus{
+        box-shadow: 2px 2px 3px 3px rgba(20, 20, 20, 0.6);
+        transform: scale(1.02);
+      }
+
+      .btn{
+        margin: 15px;
+        width: 100px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: green;
+        color: white;
+
+        transition: 0.1s;
+        outline: none;
+        border: none;
+      }
+
+
+      .btn:active{
+        background-color: gray;
+        color: red;
+        transform: scale(1.2);
+      }
+
+
+      .form-row{
+        padding: 5px;
+      }
+
+
     </style>
 {% endblock%}

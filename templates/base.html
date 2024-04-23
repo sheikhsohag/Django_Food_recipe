@@ -70,10 +70,14 @@
           {% if request.user.is_authenticated %}
 
           <div class="sign-container  right">
-            <small class="status"><h4>Welcome guest</h4></small>
+            <small class="status"><h4>{{user.username}}</h4></small>
+            {% if user.profile.image %}
+            <span>pix</span>
+            {% endif %}
             <div class="sign-register">
              <a href="{% url 'profiles' request.user.username %}">Profile</a>
-             <a href="{% url 'logout' %}">Register</a>
+             <span style="color: burlywood; font-weight: bold; font-size: 1.5rem;">|</span>
+             <a href="{% url 'logout' %}">Logout</a>
             </div>
         </div>
 
@@ -152,6 +156,9 @@ a{
 
 
 .navbar{
+  left: 0;
+  top: 0;
+  /* position: fixed; */
   width: 100%;
   height: 12%;
   background-color: grey;
@@ -190,6 +197,7 @@ a{
   border-radius: 10px;
   border: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .button{
@@ -215,6 +223,7 @@ a{
   position: relative;
   color: white;
   /* display: none; */
+  z-index: 5;
 }
 
 .dropdrown-menu ul li:hover {
@@ -316,15 +325,18 @@ a{
   clear: both;
 }
      /* nav bar ended */
-
+    
      /* footer started here */
  
  footer{
   background-color: azure;
   padding: 20px;
   height: 100px;
+  left: 0;
+  bottom: 0;
   font-size: 0.8rem;
   margin: 10px;
+  /* position: fixed; */
  }
 
  .footer-containers{
