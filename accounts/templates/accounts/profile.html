@@ -1,102 +1,202 @@
 {% extends 'base.html' %}
 
 {% block body%}
-<section class="section-content padding-y">
-      <!-- ============================ COMPONENT REGISTER   ================================= -->
-      <div class="card mx-auto" style="max-width: 720px; margin-top: 80px">
-        <article class="card-body">
-          <header class="mb-4"><h4 class="card-title">Profile</h4></header>
-          <form method="POST">
-            {% csrf_token %}
-            <div class="form-row">
-              <div class="col form-group">
-                <label>User Name</label>
-                <br/>
-                {{profile.username}}
-              </div>
+<section class="section>
+      
+      <div class="card-section">
+        <div class="card-body">
+
+          <div class="head-body">
+            <div class="head">
+              <header>
+                <h4 class="card-title">Profile Details</h4>
+              </header>
             </div>
-            <div class="form-row">
-              <div class="col form-group">
-                <label>First name</label>
-                <br/>
-                {{profile.first_name}}
-              </div>
-              <!-- form-group end.// -->
-              <div class="col form-group">
-                <label>Last name</label>
-                <br/>
-                {{profile.last_name}}
-              </div>
-              <!-- form-group end.// -->
-            </div>
-            <!-- form-row end.// -->
-            <div class="form-group">
-              <label>Email</label>
-              <br/>
-                {{profile.email}}
-            </div>
-            <!-- form-group end.// -->
-
-            <div class="form-row">
-             
-              <!-- form-group end.// -->
-              
-              <!-- form-group end.// -->
-            </div>
-
-            <div class="row">
-
-              {% for recipe in user_recipe %}
-
-              <div class="col-md-6">
-
-                <div class="card card-product-grid">
-                  <a href="{% url 'update_recipe' recipe.id %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
-                  <figcaption class="info-wrap">
-                    <a href="{% url 'update_recipe' recipe.id %}" class="title">Tittle: </br>{{recipe.product_name}}</a>
-                    <div class="price mt-1">Product Description:</br>{{recipe.description}}</div> <!-- price-wrap.// -->
-
-
-                  <div>
-
-                    <table class="table table-bordered">
-                  
-                      <tbody>
+          </div>
           
-                          <tr>
-                              <td>
-                                 <a href="{% url 'update_recipe' recipe.id %}" class = 'btn btn-warning btn-sm'>edit</a>
-                                 <a href="{% url 'delete_recipe' recipe.id %}" class = 'btn btn-danger btn-sm'>delete</a>
-                                 <a href="{% url 'product_detail' recipe.category.slug recipe.slug%}" class = 'btn btn-success btn-sm'>details</a>
-                              </td>
-                            </tr>
-                           
-                      </tbody>
-                    </table>
-                  </div>
+
+        
+
+        <div class="card-details">
+          <div class="profile-image">
+                 <img src="#" alt="Image">
+          </div>
+
+          <div class="profile-info">
+            <form method="POST">
+              {% csrf_token %}
+  
+              <div class="form-row">
+                <div class="col form-group"><label for="username">Username:</label> <p style="display: inline;">{{profile.username}}</p></div>
+              </div>
+  
+              <div class="form-row">
+                <div class="col form-group">
+                  <label>First name</label>
+                  <br/>
+                  {{profile.first_name}}
+                </div>
+  
+                <!-- form-group end.// -->
+                <div class="col form-group">
+                  <label>Last name</label>
+                  <br/>
+                  {{profile.last_name}}
+                </div>
+                <!-- form-group end.// -->
+              </div>
+  
+              <!-- form-row end.// -->
+              <div class="form-group">
+                <label>Email</label>
+                <br/>
+                  {{profile.email}}
+              </div>
+              <!-- form-group end.// -->
+  
+              <div class="form-row">
+               
+                <!-- form-group end.// -->
+                
+                <!-- form-group end.// -->
+              </div>
+              <!-- form-group// -->
+            </form>
+          </div>
+
+        </div>
+
+        <div class="recipe-card">
+            
+          <div class="row">
+  
+            {% for recipe in user_recipe %}
+
+            <div class="col-md-6">
+
+              <div class="card card-product-grid">
+                <a href="{% url 'update_recipe' recipe.id %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
+                <figcaption class="info-wrap">
+                  <a href="{% url 'update_recipe' recipe.id %}" class="title">Tittle: </br>{{recipe.product_name}}</a>
+                  <div class="price mt-1">Product Description:</br>{{recipe.description}}</div> <!-- price-wrap.// -->
 
 
-                  </figcaption>
+                <div>
+
+                  <table class="table table-bordered">
+                
+                    <tbody>
+        
+                        <tr>
+                            <td>
+                               <a href="{% url 'update_recipe' recipe.id %}" class = 'btn btn-warning btn-sm'>edit</a>
+                               <a href="{% url 'delete_recipe' recipe.id %}" class = 'btn btn-danger btn-sm'>delete</a>
+                               <a href="{% url 'product_detail' recipe.category.slug recipe.slug%}" class = 'btn btn-success btn-sm'>details</a>
+                            </td>
+                          </tr>
+                         
+                    </tbody>
+                  </table>
                 </div>
 
 
+                </figcaption>
+              </div>
 
-              </div> <!-- col.// -->
 
-              {% endfor %}
 
-              
+            </div> <!-- col.// -->
 
-            </div> <!-- row.// -->
+            {% endfor %}
 
             
-            <!-- form-group// -->
-          </form>
-        </article>
+
+          </div> <!-- row.// -->
+
+          
+        </div>
+
+
+        </div>
         <!-- card-body.// -->
       </div>
       <!-- card .// -->
       <br /><br />
       <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
     </section>
+
+
+    <style>
+
+       *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       }
+
+       .head-body{
+        position: relative;
+        width: 100%;
+        height: 50px;
+       }
+
+        .head{
+          z-index: 3;
+          position: absolute;
+          margin: 20px 0 20px 0;
+          width: 400px;
+          height: 50px;
+          border: 1px solid salmon;
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 10px;
+          background-color: honeydew;
+
+        }
+
+        .card-title{
+          padding-top: 15px;
+        }
+
+        .head-body::after{
+          content: "";
+          display: block;
+          clear: both;
+        }
+
+
+        .card-details{
+          display: flex;
+          /* background-color: gainsboro; */
+          /* position: relative; */
+          width: 100%;
+          height: 300px;
+          padding: 30px;
+          border: 1px solid wheat;
+          margin-bottom: 5px;
+        }
+
+        .profile-image{
+          padding: 10px;
+          width: 40%;
+          height: 250px;
+          left: 0;
+          top: 0;
+          border: 1px solid wheat;
+          flex: 1;
+        }
+
+        .profile-info{
+          padding: 10px;
+          width: 40%;
+          height: 250px;
+          left: 0;
+          top: 0;
+          border: 1px solid wheat;
+          flex: 1;
+        }
+        
+    </style>
 {% endblock%}
