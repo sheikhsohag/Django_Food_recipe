@@ -16,25 +16,30 @@
 	<h3 class="section-title">Popular Recipe</h3>
 </header><!-- sect-heading -->
 
-<div class="row">
+<div class="rows">
+	<div class="row">
 
-	{% for recipe in product %}
+		{% for recipe in product %}
+		
+		
+			<div class="card-body">
 	
-		<div class="card-body">
-
-            <div class="card-img">
-				<a href="{% url 'product_detail' recipe.category.slug recipe.slug %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
-			</div>
-			
-            
-			<div class="card-info">
-				<a class="title">{{recipe.product_name}}</a>
-			</div>
-
-		</div>
+				<div class="card-img">
+					<a href="{% url 'product_detail' recipe.category.slug recipe.slug %}" class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
+				</div>
+				
+				
+				<div class="card-info">
+					<a class="title">{{recipe.product_name}}</a>
+				</div>
 	
-	{% endfor %}
-</div> <!-- row.// -->
+			</div>
+		
+		{% endfor %}
+	</div> <!-- row.// -->
+
+</div>
+
 {% else %}
 <h2> Recipe List is Empty </h2>
 
@@ -64,11 +69,12 @@
 	font-weight: bold;
   }
 
+
   .row{
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -15px;
-
+	margin: 5 -20px;
+	left: 15px;
   }
 
   .card-body{
@@ -101,6 +107,12 @@
 
   .card-info{
 	padding: 15px;
+  }
+
+  .cards{
+	content: "";
+	display: block;
+	clear: both;
   }
 
   

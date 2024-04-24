@@ -11,7 +11,9 @@ from django.views.generic import ListView
 def register(request):
     form = RegistrationForm()
     if request.method == 'POST':
+        # print("======ok==================")
         form = RegistrationForm(request.POST)
+        # print(form)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -19,7 +21,9 @@ def register(request):
     return render(request, 'accounts/register.html',{'form' : form})
 
 def user_login(request):
+    print("=====ok=====", request)
     if request.method == 'POST':
+        print("===post ==", request)
         user_name = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username = user_name, password = password)

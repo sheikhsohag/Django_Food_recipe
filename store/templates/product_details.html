@@ -6,23 +6,77 @@
 
            
            
-              <div class="col-md-6">
-                <div class="card card-product-grid">
+              <div class="cards-img">
+                <div class="card-img">
                   <a class="img-wrap"> <img src="{{recipe.image.url}}"> </a>
                 </div>
               </div>   
 
-              <div class="col-md-6">
-                 <div class="card card-product-grid">
-                    <h3> <h3 style="color: blue;">Recipe Title: </h3> {{recipe.product_name}}</h3>
-                    <h3> <h3 style="color: blue;">Recipe Author: </h3> {{recipe.author}}</h3>
-                    <h3> <h3 style="color: blue;">Recipe description: </h3> {{recipe.description}}</h3>
-                    <h3> <h3 style="color: blue;">Recipe ingredients: </h3> {{recipe.ingredients}}</h3>
-                    <h3> <h3 style="color: blue;">Recipe instructions: </h3> {{recipe.instructions}}</h3>
+              <div class="info-body">
+                 <div class="card-info-details">
+                    <p> <span>Recipe Title:</span> {{recipe.product_name}}</p>
+                    <p> <span>Recipe Author: </span> {{recipe.author}}</p>
+                    <p> <span>Recipe description:  </span> {{recipe.description}}</p>
+                    <p> <span> Recipe ingredients:</span>  {{recipe.ingredients}}</p>
+                    <p> <span>Recipe instructions: </span> {{recipe.instructions}}</p>
                   </div>
 
                  </div> <!-- col.// -->
             </div>
+
+
+
+            <style>
+                
+                *{
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                }
+
+                .row{
+                  width: 100%;
+                }
+
+                .card-img{
+                  /* display: flex; */
+                  width: 100%;
+                  text-align: center;
+                  background-color: aliceblue;
+                }
+                
+                .img-wrap img{
+                  border-radius: 30px;
+                  width: 50%;
+                  height: 400px;
+                  padding: 20px;
+                }
+
+                /* information design start from here */
+                    .info-body{
+                      width: 100%;
+                      background-color: rgb(243, 241, 239);
+                      text-align: left
+  
+                    }
+
+                    .card-info-details{
+                      width: 80%;
+                      margin-left: 20px;
+                      padding: 10px;
+                      text-align: justify;
+                    }
+
+                    .card-info-details p{
+                      padding: 10px;
+                      font-size: 1.2rem;
+                    }
+
+                    .card-info-details p span{
+                      font-weight: bold;
+                    }
+                /* information design ended here */
+            </style>
           
 
 {% endblock%}
