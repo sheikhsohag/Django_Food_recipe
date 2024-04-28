@@ -11,12 +11,13 @@
 
     <!-- <link rel="stylesheet" href="static/css/style.css"> -->
     <!-- <link rel="stylesheet" href="{% static '/css/style.css' %}"> -->
+    <link rel="stylesheet" href="{%block css%} {%endblock css%}">
 
     <title>Food Share Site</title>
 
 </head>
 <body>
-    <header class="header">
+    <header class="header-base">
 
         <!-- nav nar start here -->
           <div class="navbar">
@@ -78,6 +79,8 @@
              <a href="{% url 'profiles' request.user.username %}">Profile</a>
              <span style="color: burlywood; font-weight: bold; font-size: 1.5rem;">|</span>
              <a href="{% url 'logout' %}">Logout</a>
+             <span style="color: burlywood; font-weight: bold; font-size: 1.5rem;">|</span>
+             <a href="{% url 'create_menu' %}">Create Recipe</a>
             </div>
         </div>
 
@@ -85,7 +88,8 @@
                <div class="sign-container  right">
                    <small class="status"><h4>Welcome guest</h4></small>
                    <div class="sign-register">
-                    <a href="{% url 'login' %}">Sign In</a>
+                    <a href="{% url 'login' %}">Login</a>
+                    <span style="color: burlywood; font-weight: bold; font-size: 1.5rem;">|</span>
                     <a href="{% url 'register' %}">Register</a>
                    </div>
                </div>
@@ -99,11 +103,18 @@
 
          <!-- nav bar ended here -->
     </header>
-
-
-    {% block body %}
     
-    {% endblock %}
+
+    <main>
+      
+    <div class="content-wrapper">
+      {% block body %}
+    
+      {% endblock %}
+  </div>
+    </main>
+
+
 
 
     <!-- footer start from here -->
@@ -116,7 +127,7 @@
 
                <div class="contact">
                 <h4>Contact With Us.</h4>
-                <h4>Contact No. 01517192064</h4>
+                <h4>Contact No. +8801517192064</h4>
                 <ul>
                   <li><a target="_blank" href="https://www.facebook.com/sohag.rakhob"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                   <li><a target="_blank" href="https://www.linkedin.com/in/md-sohag-ali-361b20291/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
@@ -153,25 +164,32 @@ a{
   text-decoration: none;
 }
 
+.header-base{
+  position: relative;
+  height: 14%;
+  /* background-color: red; */
+  padding-bottom: 100px;
+  z-index: 10;
+}
+
 
 
 .navbar{
   left: 0;
   top: 0;
-  /* position: fixed; */
+  position: fixed;
   width: 100%;
   height: 12%;
   background-color: grey;
   box-shadow: 1px 2px 2px rgba(136, 135, 135, 0.24);
-  display: flex;
-  /* position: fixed; */
+  display: flex; 
 }
 
-/* .navbar::after{
+.navbar::after{
   content: '';
   display: block;
   clear: both;
-} */
+}
 
 
 .navbar div{
@@ -389,6 +407,15 @@ text-align: center; /* Adjust alignment as needed */
   border-radius: 10px;
   color: white;
 }
+
+
+
+/* main sections  */
+.content-wrapper {
+    min-height: calc(100vh-140px); /* Adjust the value based on header and footer height */
+    padding-bottom: 300px; 
+}
+/* main sections ended */
 
 
 

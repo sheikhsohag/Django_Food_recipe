@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Product
+from . models import Product, Review
 
 # # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -8,3 +8,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+
+
+@admin.register(Review)
+class ReviewModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'user', 'date', 'rating']

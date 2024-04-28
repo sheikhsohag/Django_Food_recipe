@@ -56,7 +56,7 @@ def profile(request, usernam=None):
 
 def user_logout(request):
     logout(request)
-    return render(request, 'accounts/signin.html')
+    return redirect('login')
 
 
 class UserProfileDetailView(ListView):

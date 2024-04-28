@@ -42,8 +42,9 @@ def create_recipe(request):
                     image = form.cleaned_data['image']
                     slug = slugg
                     category = form.cleaned_data['category']
+                    price = form.cleaned_data['price']
                     product = Product(product_name = title, description=description, ingredients=ingredient, instructions=instruction,image=image,
-                                slug=slug, category=category, author = request.user)
+                                slug=slug, category=category, author = request.user, price = price)
                     product.save()
                     return redirect('home') 
                 else:
@@ -111,3 +112,12 @@ def search(request):
             products = Product.objects.filter(ingredients__icontains=keyword)
             # print('==----===', products)
     return render(request, 'index.html', {'product': products})
+
+
+
+def product_detail_review(request, category_slug, product_slug):
+    print("==========================", "sohag")
+    
+    single_product = Product.objects.get(category__slug = category_slug, slug=product_slug)
+    print("---", single_product)
+    return render(request, 'details_review.html', {'products':single_product})

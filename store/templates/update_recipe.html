@@ -3,72 +3,73 @@
 {% block body%}
 <section class="section-containers">
       <!-- ============================ COMPONENT REGISTER   ================================= -->
-      <div class="card mx-auto" style="max-width: 520px; margin-top: 40px">
-        <article class="card-body">
-          <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-row">
-              <div class="col form-group">
-                <label>Item name</label>
-                <br/>
-                {{form.product_name}}
-                <br>
+      <div class="card-sections">
+        <div class="card-body">
+          <header>
+            <h4 class="card-title"></h4>
+          </header>
+          <div class="form-div">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="col form-group">
+                  <label>Item name</label>
+                  <br/>
+                  <p class="product-class">{{form.product_name}}</p>
+                  <br>
+                </div>
               </div>
-            </div>
-
-            {% comment %} <div class="form-group">
-              <label>slug</label>
-              <br/>
-                {{form.slug}}
-            </div> {% endcomment %}
+  
+  
+                <div class="col form-group">
+                  <label>Category</label>
+                  <br/>
+                  <p class="product-class">{{ form.category }}</p>
+                </div>
+                <!-- form-group end.// -->
+                <div class="col form-group">
+                 
+                  <label>Description</label>
+                  <br/>
+                  <p class="product-class">{{form.description}}</p>
            
-              <div class="col form-group">
-                <label>Category</label>
+                <!-- form-group end.// -->
+              </div>
+              <!-- form-row end.// -->
+              <div class="form-group">
+                <label>Ingredients</label>
                 <br/>
-                {{ form.category }}
+                  <p class="product-class">{{form.ingredients}}</p>
               </div>
               <!-- form-group end.// -->
-              <div class="col form-group">
-               
-                <label>Description</label>
-                <br/>
-                {{form.description}}
-         
-              <!-- form-group end.// -->
-            </div>
-            <!-- form-row end.// -->
-            <div class="form-group">
-              <label>Ingredients</label>
-              <br/>
-                {{form.ingredients}}
-            </div>
-            <!-- form-group end.// -->
+  
+           
+                <div class="form-group col-md-6">
+                  <label>Instructions</label>
+                  <br/>
+                   <p class="product-class">{{form.instructions}}</p>
+                  <br/>
+                </div>
+                <!-- form-group end.// -->
+                <div class="form-group col-md-6">
+                  <label>image</label>
+                  <br/>
+             
+                  <p class="product-class">{{form.image}}</p>
+                </div>
+                <!-- form-group end.// -->
+              
+              <div class="form-group">
+                <button type="submit" class="btn-block">
+                  Submit
+                </button>
+              </div>
+              <!-- form-group// -->
+            </form>
+          </div>
 
-         
-              <div class="form-group col-md-6">
-                <label>Instructions</label>
-                <br/>
-                {{form.instructions}}
-                <br/>
-              </div>
-              <!-- form-group end.// -->
-              <div class="form-group col-md-6">
-                <label>image</label>
-                <br/>
-                <br/>
-                {{form.image}}
-              </div>
-              <!-- form-group end.// -->
-            
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">
-                Submit
-              </button>
-            </div>
-            <!-- form-group// -->
-          </form>
-        </article>
+
+        </div>
         <!-- card-body.// -->
       </div>
       <!-- card .// -->
@@ -76,4 +77,72 @@
       <br /><br />
       <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
     </section>
+
+
+    <style>
+
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .section-containers{
+        position: relative;
+        width: 100%;
+        background-color: azure;
+        /* display: flex; */
+        text-align: center;
+        height: 800px;
+      }
+
+      .card-body{
+        position: absolute;
+        width: 50%;
+        display: flex;
+        left: 25%;
+        background-color: rgb(230, 238, 238);
+        flex: left;
+      }
+
+      .form-div{
+        /* background-color: rebeccapurple; */
+        width: 100%;
+      }
+
+      input#id_product_name{
+        width: 310px;
+        padding: 10px;
+        outline: none;
+        border: none;
+        box-shadow: 2px 2px 2px 2px rgba(20, 20, 20, 0.6);
+      }
+
+      input#id_instructions{
+        width: 310px;
+        padding: 10px;
+        outline: none;
+        border: none;
+        box-shadow: 2px 2px 2px 2px rgba(20, 20, 20, 0.6);
+      }
+     
+      .product-class {
+    /* Add your styles here */
+    /* padding: 8px; */
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    /* Add more styles as needed */
+}
+
+   .btn-block{
+    width: 100px;
+    margin: 15px;
+    padding: 5px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+   }
+
+
+    </style>
 {% endblock%}

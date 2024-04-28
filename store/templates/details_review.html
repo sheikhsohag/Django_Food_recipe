@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+            <div class="row-lg">
+
+           
+           
+              <div class="cards-img">
+                <div class="card-img">
+                  <a class="img-wrap"> <img src="{{products.image.url}}"> </a>
+                </div>
+              </div>   
+
+              <div class="info-body">
+                 <div class="card-info-details">
+                    <p> <h2> {{products.product_name}} </h2></p>
+                    <p> {{products.category}}</p>
+                    <p>TK. {{products.price}}</p>
+                  </div>    
+
+                  <!-- card-info-details ended -->
+
+                  <div class="review-sections">
+
+                     <h2 class="review-heading">REVIEW</h2>
+
+                     <div class="privious-review-section">
+                           <div class="reviewer">
+                               <p><img class="reviewer-profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkN9BY5gyMxjAxe5I3SbK0L_EJf8t-TtE4fJwH_JpMKQ&s" alt="profile Avatar"></p>
+
+                               <div class="fa-star-icon">
+                                <p class="star-icon"><i  class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>                                
+                               </div>
+
+                           </div>
+
+                           <div class="review-message">
+                                 <h3 class="user-name-date">sohag - Oct. 18,23,3:18 am</h3>
+                                 <p class="user-review">amazing</p>
+                           </div>
+                     </div>
+
+
+                     
+
+                     <!-- privious review section ended -->
+
+                     <div class="current-reviews-sections">
+
+                      <h4>Write a review</h4>
+
+                      <form action="POST" action="#">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="prod_id" value="{{products.id}}">
+                        <div class="product-ratings">
+
+                          <label for="star-1" class="label"><i class="fa fa-star"></i></label>
+                          <input type="radio" class="input1" id="star-1" name="rating" value="1" >
+
+                          <label for="star-2" class="label"><i class="fa fa-star"></i></label>
+                          <input type="radio" class="input1" id="star-2" name="rating" value="2" >
+
+                          <label for="star-3" class="label"><i class="fa fa-star"></i></label>
+                          <input type="radio" class="input1" id="star-3" name="rating" value="3" >
+
+                          <label for="star-4" class="label"><i class="fa fa-star"></i></label>
+                          <input type="radio" class="input1" id="star-4" name="rating" value="4" >
+
+                          <label for="star-5" class="label"><i class="fa fa-star"></i></label>
+                          <input type="radio" class="input1" id="star-5" name="rating" value="5" checked>
+
+                        </div>
+
+                        <div class="form-group-text">
+                          <div class="text"> Your Review <sup class="required">*</sup></div>
+                          <textarea name="coment" id="comment" cols="20" rows="6"></textarea>
+                        </div>
+
+                        <div class="form-group-button">
+                          <button type="submit" class="btn btn-primary"> Send Your Review</button>
+                        </div>
+
+
+                      </form>
+
+                     </div>  
+                     <!-- current reviews sections ended -->
+                  </div>  
+
+                  <!-- review-sections ended -->
+
+                  <div class="order-section">
+
+                  </div>
+
+                  <!-- order sections ended -->
+
+                 </div> <!-- info-body ended -->
+            </div>
+
+
+
+
+            <style>
+                
+                *{
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                }
+
+                .row-lg{
+                  width: 100%;
+                  height: auto;
+                  padding-bottom: 100px; 
+                  /* background-color: antiquewhite; */
+                
+                }
+
+                .card-img{
+                  /* display: flex; */
+                  width: 100%;
+                  text-align: center;
+                  background-color: aliceblue;
+                }
+                
+                .img-wrap img{
+                  border-radius: 30px;
+                  width: 50%;
+                  height: 400px;
+                  padding: 20px;
+                }
+
+                /* information design start from here */
+                    .info-body{
+                      position: relative;
+                      width: 100%;
+                      background-color: white;
+                      text-align: left
+                    }
+
+                    .card-info-details{
+                     position: sticky;
+                      width: 20%;
+                      margin-left: 20px;
+                      padding: 10px;
+                      text-align: justify;
+                      background-color: white;
+                      border: 1px solid white;
+                      box-shadow: 2px 2px 3px 3px rgba(182, 176, 176, 0.3);
+                      text-align: center;
+                    }
+
+
+                    .card-info-details p{
+                      padding: 10px;
+                      font-size: 1.2rem;
+                    }
+
+                    .card-info-details p span{
+                      font-weight: bold;
+                    }
+
+                    /*  review sections start from here */
+
+                    .review-sections {
+                        position: absolute;
+                        width: 50%;
+                        
+                        /* background-color: rgb(226, 134, 13); */
+                        left: 22%;
+                        top: 0;
+                    }
+
+                    .review-heading{
+                        text-align: center;
+                        padding: 20px;
+                        font-size: 2rem;
+                    }
+
+                    .privious-review-section{
+                      padding: 20px;
+                      position: relative;
+                      margin: 10px;
+                      margin-bottom: 30px;
+                      /* border: 1px solid gray; */
+                      height: 200px;
+                      border-radius: 10px;
+                    }
+
+                    .reviewer{
+                      position: absolute;
+                      left: 0;
+                    }
+
+                    .reviewer p{
+                      padding-left: 10px;
+                    }
+
+                    .review-message{
+                      position: absolute;
+                      left: 30%;
+                    }
+
+                    .fa-star-icon{
+                      padding-left: 25%;
+                    }
+
+                    .star-icon{
+                      color: rgb(230, 196, 6);
+                      padding-left: 20px;
+                    }
+
+
+
+
+
+                    /* review sections ended here */
+
+
+                    .info-body{
+                         content: "";
+                         display: block;
+                         clear: both;
+                    }
+
+
+
+                /* information design ended here */
+
+
+                /* revies sections start */
+
+                .input1{
+                  display: none;
+                }
+
+                .label{
+                  cursor: pointer;
+                  padding: 0 0.1em;
+                  font-size: 3rem;
+                }
+
+                .fa-star{
+                  color: orange;
+                }
+
+                .input1:checked ~ .label .fa-star{
+                  color: #ddd;
+                }
+
+                .rating-group:hover .label .fa-star{
+                  color: orange;
+                }
+
+                .input1:hover ~ .label .fa-star{
+                  color: #ddd;
+                }
+
+                textarea {
+                  width: 100%;
+                  resize: none;
+                  padding: 10px;
+                  height: 100px;
+                }
+
+                .btn-primary{
+                  padding: 5px;
+                  border-radius: 5px;
+                  outline: none;
+                  border: none;
+                  background-color: green;
+                  color: white;
+
+                }
+
+                .btn-primary:hover{
+                  transform: scale(1.2);
+                }
+
+                /* reviews sections ended */
+
+
+                .row-lg::after{
+                  content: "";
+                  display: block;
+                  clear: both;
+                }
+            </style>
+          
+
+{% endblock%}
