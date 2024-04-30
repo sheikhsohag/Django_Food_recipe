@@ -6,6 +6,18 @@ from django.contrib.auth.decorators import login_required
 from category.models import Category
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.shortcuts import render
+from store.models import Product
+from category.models import Category
+
+
+def home(request):
+    product = Product.objects.all()
+    cat = Category.objects.all()
+    context =  {'product' : product, 'category':cat}
+    return render(request,'index.html', context)
+
+# ==============================================================
 
 
 def Store(request, category_slug = None):
@@ -116,8 +128,7 @@ def search(request):
 
 
 def product_detail_review(request, category_slug, product_slug):
-    print("==========================", "sohag")
     
     single_product = Product.objects.get(category__slug = category_slug, slug=product_slug)
-    print("---", single_product)
+   
     return render(request, 'details_review.html', {'products':single_product})
